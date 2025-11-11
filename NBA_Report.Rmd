@@ -3,8 +3,8 @@ title: "NBA_Report"
 author: "Rita Wang, Teddy Guo, Sara Baji, Camila Diaz"
 date: "`r Sys.Date()`"
 params:
-  data_path: "Midterm_project/raw_data/nba_2025-10-30.csv"
-  codebook_path: "Midterm_project/nba_codebook.xlsx"
+  data_path: "data/raw_nba_2025-10-30.csv"
+  codebook_path: "nba_codebook.xlsx"
   top_n: 10
   cutoff_date: "October 30, 2025"
   outcome_label: "points per 36 minutes"
@@ -56,7 +56,6 @@ Key variables include:
 These variables allow for ranking players, summarizing league-wide performance patterns, and later building a model to explore how shooting, rebounding, and passing relate to overall scoring output.
 
 ## Summary Statistics
-
 ```{r, summary-stats, message=FALSE, warning=FALSE}
 table1<- readRDS(here::here("output/table1.rds"))
 table1
@@ -99,22 +98,33 @@ We next rank the Top `r params$top_n` players and interpret `r params$outcome_la
 * Add interpretation of your ranking anslysis.
 
 
-# Modeling overview
+# Modeling overview - by Sara Baji
 
 Building on the descriptive summaries above, we will use a linear regression model to evaluate how different aspects of player performance contribute to scoring efficiency. Specifically, we examine how shooting accuracy (field-goal and three-point percentage), rebounding, and passing metrics together explain variation in points per 36 minutes. 
 
+
 ## Regression Modeling
-
 ```{r, regression-model, echo=TRUE, message=FALSE, warning=FALSE}
-# build you simple linear regresison model here, you can build complicated models if you want, make sure to adjust the modeling overview if you dp.
+coef_tab <- readRDS(here::here("output", "reg_coef_table.rds"))
+fit_tab  <- readRDS(here::here("output", "reg_fit_stats.rds"))
 
-# include diagnostic and graphs (e.g., predicted vs. actual)
+coef_tab %>% 
+  knitr::kable(digits = 3, caption = "Regression coefficients for predicting points per 36 minutes.")
+
+fit_tab %>% 
+  select(r.squared, adj.r.squared, AIC, BIC) %>% 
+  knitr::kable(digits = 3, caption = "Model fit statistics.")
+```
+
+```{r, regression-plot-colored, echo=TRUE, message=FALSE, warning=FALSE}
+knitr::include_graphics(here::here("output", "reg_pred_vs_actual.png"))
 ```
 
 ## Interpretation
 
-* add a paragraph here about your regression model interpretation
+The linear regression model explained approximately 41% of the variation in players’ points per 36 minutes (R² = 0.41, Adjusted R² = 0.41). Field-goal percentage was the strongest predictor of scoring (β = 23.24, SE = 2.56, p < 0.001), followed by assists (β = 0.72, SE = 0.12, p < 0.001) and three-point percentage (β = 5.20, SE = 2.03, p = 0.011). Total rebounds showed a smaller, marginally significant positive effect (β = 0.15, SE = 0.09, p = 0.082). These findings indicate that players who shoot efficiently and contribute through playmaking tend to score more points per 36 minutes, while rebounding provides a weaker but still positive contribution to scoring performance.
 
 
 # Summary of findings 
 
+Overall, the analysis shows that players who shoot efficiently, make plays for teammates, and contribute on the boards tend to have higher scoring averages per 36 minutes. Shooting accuracy, measured through field-goal and three-point percentages, appears to have the strongest impact on scoring performance. Assists and rebounds also play meaningful roles, suggesting that well-rounded players who both create and capitalize on opportunities are generally the most productive scorers.
