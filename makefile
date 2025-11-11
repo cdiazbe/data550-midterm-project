@@ -1,14 +1,10 @@
-#add other make rules here
-
-
-
-output/ranking_plot.png: code/03_ranking.R raw_data/nba_2025-10-30.csv
+output/ranking_plot.png: code/03_ranking.R data/raw_nba_2025-10-30.csv
 	Rscript code/03_ranking.R
 
 
-output/table1.rds: code/01_summary_table.R raw_data/nba_2025-10-30.csv
+output/table1.rds: code/01_summary_table.R data/raw_nba_2025-10-30.csv
 	Rscript code/01_summary_table.R
 	
 .PHONY: clean
 clean:
-	rm -f output/*.rds && rm -f output/*.png && rm -f *.html
+	rm -f output/*.rds && rm -f output/*.png && rm -f *.html rm -f *.pdf
