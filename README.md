@@ -10,6 +10,16 @@
 
 ### `code/02_summary_graphs.R`
 
+- Reads `data/raw_nba_2025-10-30.csv`.
+- Creates a histogram of points per 36 minutes for all players.
+- Creates scatter plots to show relationships between points per 36 minutes and:
+  - Effective field goal percentage (shooting efficiency)
+  - Assists
+- Saves outputs as:
+  - **`output/histogram_pts.png`**
+  - **`output/scatter_pts_efg.png`**
+  - **`output/scatter_pts_ast.png`**
+
 ### `code/03_ranking.R`
 
 - Reads `data/raw_nba_2025-10-30.csv`.
@@ -23,7 +33,6 @@
 -   Reads `data/raw_nba_2025-10-30.csv`.
 -   Fits a linear regression model predicting points per 36 minutes from shooting and assist metrics.
 -   Saves model objects, summary tables, and the **colored Predicted vs. Actual plot** to the `output/` folder.
-
 
 ------------------------------------------------------------------------
 

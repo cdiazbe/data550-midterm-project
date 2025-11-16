@@ -64,25 +64,39 @@ table1
 Table 1 summarizes overall player performance across 422 NBA athletes. The averages show that players typically contribute around **15 points**, **3 assists**, and **6 rebounds**, though the wide interquartile ranges highlight large variation in offensive roles and productivity. Shooting efficiency is generally consistent league-wide, with **field-goal accuracy near 0.46**, **three-point accuracy around 0.32**, and **free-throw accuracy near 0.76**, resulting in an **effective field-goal rate of roughly 0.54**. These numbers suggest that while elite scorers push the upper range of these metrics, most players maintain balanced scoring efficiency. 
 
 
-## Graphical Summaries
+## Graphical Summaries - by Camila Diaz
 
 ### Histogram
 
-* Description of the histogram (ideally some important variable about the player statistics)
+This histogram shows the distribution of points per 36 minutes.
 
 ```{r, histogram, echo=TRUE, message=FALSE, warning=FALSE}
+#| fig.align="center"
+knitr::include_graphics(here::here("output/histogram_pts.png"))
 
 ```
 
 ### Scatter plot
 
-* Description of the scatter plot (ideally showing important relationships that contribute to our analysis goal - how efficiency and contribution link to scoring)
+This plot shows how players’ scoring relates to their effective field goal percentage.
 
-* please do at least 2 scatter plots
-
-```{r, scatterplots, echo=TRUE, message=FALSE, warning=FALSE}
+```{r, scatter-1, echo=TRUE, message=FALSE, warning=FALSE}
+#| fig.align="center"
+knitr::include_graphics(here::here("output/scatter_pts_efg.png"))
 
 ```
+
+This plot shows how players’ scoring relates to their assists.
+
+```{r, scatter-2, echo=TRUE, message=FALSE, warning=FALSE}
+#| fig.align="center"
+knitr::include_graphics(here::here("output/scatter_pts_ast.png"))
+
+```
+
+### Interpretation
+
+The histogram shows most players score around 15 points per 36 minutes. The scatter plots indicate that higher points are generally linked to better shooting and more assists. Points per 36 minutes have a weak positive correlation with both effective field goal percentage (r = 0.49) and assists (r = 0.35)." Overall, scoring is influenced more by shooting efficiency than by assists.
 
 # Player Ranking & Performance Summary - By Teddy Guo
 
