@@ -21,3 +21,7 @@ output/reg_model.rds output/reg_coef_table.rds output/reg_fit_stats.rds output/r
 .PHONY: clean
 clean:
 	rm -f output/*.rds && rm -f output/*.png && rm -f *.html && rm -f *.pdf
+	
+.PHONY: install
+install:
+	Rscript -e "renv::restore(prompt = FALSE)"
